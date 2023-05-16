@@ -1,0 +1,6 @@
+.eslintrc.json
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+*.html
