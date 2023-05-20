@@ -18,6 +18,33 @@
     },
     "plugins": ["react"],
     "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    ["external", "builtin"],
+                    "internal",
+                    ["sibling", "parent"],
+                    "index"
+                ],
+                "pathGroups": [
+                    {
+                        "pattern": "@(react|react-native)",
+                        "group": "external",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "@src/**",
+                        "group": "internal"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": ["internal", "react"],
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
+            }
+        ]
     }
 }
