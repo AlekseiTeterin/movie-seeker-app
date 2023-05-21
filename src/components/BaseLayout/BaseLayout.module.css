@@ -1,0 +1,42 @@
+.header {
+    height: 80px;  
+}
+  
+.navigationBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    margin: 0 auto;
+    padding: 0 15px;
+    height: 100%;
+}
+  
+.links {
+    display: flex;
+    justify-content: space-between;
+    color: rgb(15, 75, 112);
+    font-weight: 600;
+    font-size: 20px;
+    gap: 30px;
+}
+
+.imgWrapper {
+    display: flex;
+    margin: 5px;
+}
+  
+.img {
+    height: 70px;
+}
+  
+.logoText {
+    color: rgb(151, 188, 214);
+    margin: auto;
+    font-weight: 600;
+    font-style: italic;
+    
+    padding-left: 10px;
+    font-size: 20px;
+}
+  
