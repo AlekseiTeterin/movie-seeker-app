@@ -1,4 +1,7 @@
 .home {
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-around;
     padding: 50px 50px;
     font-size: 30px;
 }

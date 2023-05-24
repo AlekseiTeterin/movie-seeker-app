@@ -10,8 +10,8 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage')) ;
 function App() {
     return (
         <div className='App'>
+            <BaseLayout />
             <Suspense fallback={<div>Loading page. Wait a few seconds...</div>}>
-                <BaseLayout />
                 <Routes>
                     <Route path='/' element={<HomePage />} />
                     <Route path='signin' element={<LoginPage />} />
