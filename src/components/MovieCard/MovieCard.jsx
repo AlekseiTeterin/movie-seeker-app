@@ -8,14 +8,14 @@ function MovieCard({movieData}) {
     return(
         <div className={style.smallCard}>
             <Link to={`/movie/${movieData.id}`}>
-                <div className={style.rating}>{movieData.rating} kp</div>
+                <div className={style.rating}>{movieData.rating.kp} kp</div>
                 <div className={style.description}>
                     <div className={style.title}>{movieData.name}</div>
                     <div className={style.release}>
-                        {movieData.year} {movieData.genre}
+                        {movieData.year} {movieData.genres[0].name}
                     </div>
                 </div>
-                <img className={style.poster} src={movieData.poster} alt={movieData.name} />
+                <img className={style.poster} src={movieData.poster.previewUrl} alt={movieData.name} />
             </Link>
         </div>
     )

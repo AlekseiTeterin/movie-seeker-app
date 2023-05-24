@@ -1,6 +1,7 @@
 .home {
     margin-top: 200px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     padding: 50px 50px;
     font-size: 30px;
