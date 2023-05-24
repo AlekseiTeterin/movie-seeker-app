@@ -4,3 +4,4 @@
 **/.hg
 **/node_modules
 *.html
+**/src/utils

@@ -1,20 +1,23 @@
-import React from 'react';
+import { React, lazy, Suspense } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import BaseLayout from './components/BaseLayout/BaseLayout';
-import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
+
+const HomePage = lazy(() => import('./pages/HomePage/HomePage')) ;
 
 function App() {
     return (
         <div className='App'>
             <BaseLayout />
-            <Routes>
-                <Route path='/' element={<HomePage />} />
-                <Route path='signin' element={<LoginPage />} />
-                <Route path='signup' element={<RegisterPage />} />
-            </Routes>
+            <Suspense fallback={<div>Loading page. Wait a few seconds...</div>}>
+                <Routes>
+                    <Route path='/' element={<HomePage />} />
+                    <Route path='signin' element={<LoginPage />} />
+                    <Route path='signup' element={<RegisterPage />} />
+                </Routes>
+            </Suspense>
         </div>
     );
 }
