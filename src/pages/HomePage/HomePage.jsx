@@ -1,11 +1,11 @@
 import React from 'react';
 import style from './HomePage.module.css';
 import MovieCard from '../../components/MovieCard/MovieCard';
-import { useGetMoviesForHomePageQuery } from '../../store/api/movieApi';
+import { useGetMoviesQuery } from '../../store/api/movieApi';
 
 
 function HomePage() {
-    const { data, isLoading, error } = useGetMoviesForHomePageQuery(6);
+    const { data, isLoading, error } = useGetMoviesQuery(6);
 
     if (error) {
         return <div className={style.home}>Something error</div>;
