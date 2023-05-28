@@ -1,11 +1,14 @@
+/* eslint-disable no-alert */
 /* eslint-disable react/require-default-props */
 import React, { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Container, TextField, Button, InputAdornment, IconButton } from '@mui/material';
 import propTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import style from './RegisterForm.module.css';
 import formValidator from '../../utils/formValidator';
+import isOccupiedName from '../../utils/isOccupiedName';
 
 function RegisterForm({ handleSubmit, buttonName }) {
    
@@ -14,11 +17,13 @@ function RegisterForm({ handleSubmit, buttonName }) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [altText, setAltText] = useState('');
     const [altTextPassword, setAltTextPassword] = useState('');
-    const [isConfirmed, setIsConfirmed] = useState(true);
+    const [isConfirmed, setIsConfirmed] = useState(false);
     const [showPassword, setShowPassword] = useState(false);    
 
     const nameFieldText = 'только латинские буквы, цифры и _';
-    const passwordFieldText = 'пароль должен состоять из латинских букв, минимум одной заглавной буквы и спецсимвола';
+    const passwordFieldText = 'пароль должен состоять из латинских букв (минимум одна заглавная и одна строчная), минимум 1 символа или цифры';
+
+    const navigate = useNavigate();
 
     return (
         <Container component='main' maxWidth='xs'>
@@ -38,7 +43,7 @@ function RegisterForm({ handleSubmit, buttonName }) {
                 error={Boolean(altText)}
             />
             <TextField
-                label='Введите пароль'
+                label='Введите пароль 8 - 20 символов'
                 type={showPassword ? 'text' : 'password'}
                 required
                 value={password}
@@ -73,15 +78,15 @@ function RegisterForm({ handleSubmit, buttonName }) {
                 onChange={(e) => {
                     setConfirmPassword(e.target.value)
                     setTimeout(() => {
-                        if(e.target.value !== password) {
-                            setIsConfirmed(false)
+                        if(e.target.value === password) {
+                            setIsConfirmed(true)
                         } else {
-                            setIsConfirmed(true) 
+                            setIsConfirmed(false) 
                         }      
                     }, 0) 
                 }}
                 helperText={(isConfirmed) ? '' : 'Значения паролей не совпадают!'}
-                error = {!isConfirmed}
+                error = {(confirmPassword !== '') && !isConfirmed}
                 InputProps={{
                     endAdornment: (
                     <InputAdornment position="end">
@@ -102,7 +107,13 @@ function RegisterForm({ handleSubmit, buttonName }) {
                 sx={{ mt: 3, mb: 2 }}
                 onClick={() => {
                     if(isConfirmed && altText === '' && altTextPassword === '') {
-                        handleSubmit(name, password);
+                        if(isOccupiedName(name) === false){
+                            handleSubmit(name, password);
+                            navigate('/');
+                        }
+                        else{
+                            alert('Такое имя уже есть в системе');
+                        }
                     }
                 }}
             >

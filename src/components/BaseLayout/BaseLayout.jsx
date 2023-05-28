@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './BaseLayout.module.css';
+import IsAuth  from './IsAuth';
 import film from '../../images/film.svg';
-
 
 function BaseLayout() {
     return (
@@ -14,16 +14,8 @@ function BaseLayout() {
                         <div className={style.logoText}>фильмотека</div>
                     </div>
                 </NavLink>
-                <ul className={style.links}>
-                    <li>
-                        <NavLink to='/signin'>Войти</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/signup'>Регистрация</NavLink>
-                    </li>
-                </ul>
+                <IsAuth/>
             </nav>
-            
         </div>
         
     );
