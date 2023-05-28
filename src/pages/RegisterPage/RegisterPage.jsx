@@ -7,12 +7,11 @@ import SignUp from '../../components/SignUp/SignUp';
 function RegisterPage() {
     return (
         <div className={style.register}>
-            <h2 className={style.text}>Регистрация нового пользователя</h2>
+            <h3 className={style.title}>Регистрация нового пользователя</h3>
             <SignUp />
-            <h3 className={style.altAction}>
-                Уже регистрировались в системе? 
-                <Link to='/signin' className={style.loginLink}>Войти</Link> 
-            </h3>
+            <p className={style.alternative}>
+                Уже регистрировались в системе? <Link to='/signin' className={style.link}>Войти</Link> 
+            </p>
         </div>
     );
 }

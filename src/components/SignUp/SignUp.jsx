@@ -1,11 +1,10 @@
 /* eslint-disable no-const-assign */
 import React, { useContext } from 'react';
-// import style from './SignUp.module.css';
 import { useDispatch } from 'react-redux'
 import store from "../../store";
 import { IsAuthContext } from '../../store/context';
 import { setCurrentUser } from "../../store/slices/currentUserSlice";
-import RegisterForm from "../RegisterForm/RegisterForm";
+import RegisterForm from "../Forms/RegisterForm";
 
 
 
