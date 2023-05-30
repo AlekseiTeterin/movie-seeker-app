@@ -7,6 +7,7 @@ import style from './BaseLayout.module.css';
 import { IsAuthContext } from '../../store/context';
 import { removeCurrentUser } from '../../store/slices/currentUserSlice';
 
+
 function IsAuth() {
     const dispatch = useDispatch();
     const { isAuth, toggleAuth } = useContext(IsAuthContext);
@@ -22,7 +23,9 @@ function IsAuth() {
         </ul>
     ) : (
         <ul className={style.links}>
-            <li>{JSON.parse(localStorage.getItem('currentUser')).userName}</li>
+            <li className={style.user}>    
+                {JSON.parse(localStorage.getItem('currentUser')).userName}
+            </li>
             <li>
                 <NavLink to='/favourite'>Избранное</NavLink>
             </li>
