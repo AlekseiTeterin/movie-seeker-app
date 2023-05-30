@@ -14,8 +14,8 @@ function App() {
             <Suspense fallback={<div>Loading page. Wait a few seconds...</div>}>
                 <Routes>
                     <Route path='/' element={<HomePage />} />
-                    <Route path='signin' element={<LoginPage />} />
-                    <Route path='signup' element={<RegisterPage />} />
+                    <Route path='/signin' element={<LoginPage />} />
+                    <Route path='/signup' element={<RegisterPage />} />
                 </Routes>
             </Suspense>
         </div>

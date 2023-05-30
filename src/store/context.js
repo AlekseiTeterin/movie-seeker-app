@@ -6,7 +6,7 @@ import store from '.';
 const IsAuthContext = React.createContext(false);
 
 function IsAuthContextProvider({ children }) {
-    const [isAuth, setIsAuth] = useState(store.getState().currentUser);
+    const [isAuth, setIsAuth] = useState(!!store.getState().currentUser.userName);
     const toggleAuth = () => setIsAuth(!isAuth);
 
     return (
