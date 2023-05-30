@@ -3,7 +3,6 @@ import style from './HomePage.module.css';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import { useGetMoviesQuery } from '../../store/api/movieApi';
 
-
 function HomePage() {
     const { data, isLoading, error } = useGetMoviesQuery(6);
 

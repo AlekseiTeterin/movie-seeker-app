@@ -1,7 +1,7 @@
 .header {
-    height: 80px;  
+    height: 80px;
 }
-  
+
 .navigationBar {
     display: flex;
     justify-content: space-between;
@@ -10,7 +10,7 @@
     padding: 0 15px;
     height: 100%;
 }
-  
+
 .links {
     display: flex;
     justify-content: space-between;
@@ -24,18 +24,16 @@
     display: flex;
     margin: 5px;
 }
-  
+
 .img {
     height: 70px;
 }
-  
+
 .logoText {
     color: rgb(151, 188, 214);
     margin: auto;
     font-weight: 600;
     font-style: italic;
-    
     padding-left: 10px;
     font-size: 20px;
 }
-  
