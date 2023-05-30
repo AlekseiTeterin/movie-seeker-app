@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
+import store from '../../store';
 import { IsAuthContext } from '../../store/context';
 import { setCurrentUser } from '../../store/slices/currentUserSlice';
 import SignInForm from '../Forms/SignInForm';
@@ -16,12 +17,15 @@ function SignIn() {
             if (el.userName === name && el.userPassword === password) {
                 isTruthParams = true;
                 toggleAuth();
-
                 dispatch(
                     setCurrentUser({
                         userName: name,
                         userPassword: password,
                     })
+                );
+                localStorage.setItem(
+                    'currentUser',
+                    JSON.stringify(store.getState().currentUser)
                 );
             }
         });

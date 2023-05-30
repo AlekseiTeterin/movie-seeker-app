@@ -17,6 +17,8 @@ function SignUp() {
                 userPassword: password,
             })
         );
+        const user = store.getState().currentUser;
+        localStorage.setItem('currentUser', JSON.stringify(user));
         toggleAuth();
         const array = Array.from(
             JSON.parse(localStorage.getItem('users')) || {
@@ -24,7 +26,7 @@ function SignUp() {
                 password: 'rdfs',
             }
         );
-        array.push(store.getState().currentUser);
+        array.push(user);
         localStorage.setItem('users', JSON.stringify(array));
     };
 

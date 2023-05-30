@@ -4,9 +4,9 @@ import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import style from './BaseLayout.module.css';
+import store from '../../store';
 import { IsAuthContext } from '../../store/context';
 import { removeCurrentUser } from '../../store/slices/currentUserSlice';
-
 
 function IsAuth() {
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function IsAuth() {
         </ul>
     ) : (
         <ul className={style.links}>
-            <li className={style.user}>    
+            <li className={style.user}>
                 {JSON.parse(localStorage.getItem('currentUser')).userName}
             </li>
             <li>
@@ -37,6 +37,10 @@ function IsAuth() {
                     to='/'
                     onClick={() => {
                         dispatch(removeCurrentUser());
+                        localStorage.setItem(
+                            'currentUser',
+                            JSON.stringify(store.getState().currentUser)
+                        );
                         toggleAuth();
                     }}
                 >
