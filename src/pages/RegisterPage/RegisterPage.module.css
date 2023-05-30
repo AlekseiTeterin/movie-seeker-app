@@ -4,7 +4,7 @@
 
 .title {
     text-align: center;
-    color:rgb(56, 107, 177)
+    color: rgb(56, 107, 177);
 }
 
 .alternative {
@@ -15,4 +15,3 @@
     color: darkblue;
     cursor: pointer;
 }
-

@@ -1,28 +1,27 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux'; 
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import store from './store';
 import './index.css';
-import { IsAuthContextProvider } from './store/context'
+import { IsAuthContextProvider } from './store/context';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 function Main() {
-    return(
+    return (
         <React.StrictMode>
-        <Provider store={store}>
-            <IsAuthContextProvider>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            </IsAuthContextProvider>
-        </Provider>  
-    </React.StrictMode>
-    )
+            <Provider store={store}>
+                <IsAuthContextProvider>
+                    <BrowserRouter>
+                        <App />
+                    </BrowserRouter>
+                </IsAuthContextProvider>
+            </Provider>
+        </React.StrictMode>
+    );
 }
-    
-root.render(<Main />);
 
+root.render(<Main />);

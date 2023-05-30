@@ -1,10 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     userName: '',
     userPassword: '',
-}
+};
 
 const currentUserSlice = createSlice({
     name: 'currentUser',
@@ -19,9 +19,9 @@ const currentUserSlice = createSlice({
             state.userName = '';
             state.userPassword = '';
             localStorage.setItem('currentUser', JSON.stringify(state));
-        }
-    }
-})
+        },
+    },
+});
 
 export const { setCurrentUser, removeCurrentUser } = currentUserSlice.actions;
 export const currentUser = currentUserSlice.reducer;
