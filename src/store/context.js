@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import store from '.';
 
-const IsAuthContext = React.createContext(false);
+
+const IsAuthContext = React.createContext();
 
 function IsAuthContextProvider({ children }) {
-    const [isAuth, setIsAuth] = useState(!!store.getState().currentUser.userName);
+    const [isAuth, setIsAuth] = useState(!!JSON.parse(localStorage.getItem('currentUser')).userName);
     const toggleAuth = () => setIsAuth(!isAuth);
 
     return (
