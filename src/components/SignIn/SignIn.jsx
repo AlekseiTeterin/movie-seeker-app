@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import store from '../../store';
 import { IsAuthContext } from '../../store/context';
 import { setCurrentUser } from '../../store/slices/currentUserSlice';
+import { setFavourite } from '../../store/slices/favouriteSlice';
+import localStorageKey from '../../utils/localStorageKey';
 import SignInForm from '../Forms/SignInForm';
 
 function SignIn() {
@@ -26,6 +28,13 @@ function SignIn() {
                 localStorage.setItem(
                     'currentUser',
                     JSON.stringify(store.getState().currentUser)
+                );
+                dispatch(
+                    setFavourite(
+                        JSON.parse(
+                            localStorage.getItem(localStorageKey('favourite'))
+                        ) || []
+                    )
                 );
             }
         });

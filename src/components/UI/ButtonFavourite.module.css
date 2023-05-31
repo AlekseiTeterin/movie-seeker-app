@@ -1,0 +1,25 @@
+.buttonDiv {
+    width: 30%;
+    align-self: center;
+}
+.btnAdd {
+    width: 14vw;
+    height: 5vh;
+    background-color: rgb(59, 220, 86);
+    font-size: 15px;
+}
+
+.btnDel {
+    width: 14vw;
+    height: 5vh;
+    background-color: rgb(228, 65, 65);
+    font-size: 15px;
+}
+
+.btnAdd:hover {
+    cursor: pointer;
+}
+
+.btnDel:hover {
+    cursor: pointer;
+}

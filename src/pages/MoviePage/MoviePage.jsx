@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import style from './MoviePage.module.css';
+import ButtonFavourite from '../../components/UI/ButtonFavourite';
 import { useGetMovieByIdQuery } from '../../store/api/movieApi';
 
 function MoviePage() {
@@ -26,8 +27,41 @@ function MoviePage() {
             </div>
             <div className={style.description}>
                 <div className={style.name}>{data.name}</div>
+                <div className={style.andButton}>
+                    <div className={style.list}>
+                        <div className={style.tabex}>Жанр:</div>
+                        <div>
+                            {data.genres.map((genre) => (
+                                <div key={data.genres.indexOf(genre)}>
+                                    {' '}
+                                    {genre.name}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <ButtonFavourite id={filmId} />
+                </div>
+
+                <div>Описание: {data.description}</div>
+                <div>Год выхода картины: {data.year}</div>
                 <div>
-                    <Link to={data.videos.trailers[0].url} className={style.link}>
+                    Рейтинг: Кинопоиск - {data.rating.kp}, IMDB -{' '}
+                    {data.rating.imdb}, FilmCritics - {data.rating.filmCritics}
+                </div>
+                <div className={style.list}>
+                    <div className={style.tabex}>В ролях: </div>
+                    <div>
+                        {data.persons.slice(0, 5).map((actor) => (
+                            <div key={actor.id}> {actor.name}</div>
+                        ))}
+                    </div>
+                </div>
+
+                <div>
+                    <Link
+                        to={data.videos.trailers[0].url}
+                        className={style.link}
+                    >
                         Смотреть трейлер
                     </Link>
                 </div>
