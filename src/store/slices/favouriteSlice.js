@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import localStorageKey from '../../utils/localStorageKey';
+import localStorageKey from '../../utils/LSKeyBuilder';
 
 const initialState = {
     favourites: JSON.parse(localStorage.getItem(localStorageKey('favourite')))
