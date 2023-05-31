@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    userName: localStorage.getItem('currentUser').userName,
+    userName: JSON.parse(localStorage.getItem('currentUser')).userName,
     userPassword: '',
 };
 

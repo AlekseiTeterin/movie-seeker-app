@@ -6,6 +6,7 @@ export const movieApi = createApi({
     reducerPath: 'movieApi',
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://api.kinopoisk.dev',
+        method: 'GET',
         headers: {
             'X-API-KEY': key,
             Accept: 'application/json',
@@ -15,20 +16,23 @@ export const movieApi = createApi({
         getRandomMovie: builder.query({
             query: () => ({
                 url: '/v1.3/movie/random',
-                method: 'GET',
             }),
         }),
         getMovies: builder.query({
             query: (limit) => ({
                 url: '/v1.3/movie',
-                method: 'GET',
                 params: {
                     limit,
                     page: 3,
                 },
             }),
         }),
+        getMovieById: builder.query({
+            query: (id) => ({
+                url: `/v1.3/movie/${id}`,
+            })
+        })
     }),
 });
 
-export const { useGetRandomMovieQuery, useGetMoviesQuery } = movieApi;
+export const { useGetRandomMovieQuery, useGetMoviesQuery, useGetMovieByIdQuery } = movieApi;

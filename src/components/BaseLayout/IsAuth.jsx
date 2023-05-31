@@ -24,7 +24,7 @@ function IsAuth() {
     ) : (
         <ul className={style.links}>
             <li className={style.user}>
-                {JSON.parse(localStorage.getItem('currentUser')).userName}
+                {store.getState().currentUser.userName}
             </li>
             <li>
                 <NavLink to='/favourite'>Избранное</NavLink>
