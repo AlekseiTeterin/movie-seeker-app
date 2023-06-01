@@ -7,6 +7,7 @@ import style from './Search.module.css';
 import { useGetMovieByNameQuery } from '../../store/api/movieApi';
 import { IsAuthContext } from '../../store/context';
 import { addToHistory } from '../../store/slices/historySlice';
+import getTimeStamp from '../../utils/getTimeStamp';
 import useDebounce from '../../utils/useDebounce';
 
 function Search() {
@@ -16,7 +17,9 @@ function Search() {
     const debounce = useDebounce(searchValue);
     const addToHistoryHandler = () => {
         if (searchValue !== '') {
-            dispatch(addToHistory(searchValue));
+            dispatch(
+                addToHistory({ query: searchValue, time: getTimeStamp() })
+            );
         }
     };
     const { data } = useGetMovieByNameQuery(debounce, {
@@ -53,7 +56,7 @@ function Search() {
                         <Link
                             key={film.id}
                             to={`/search/${film.name}`}
-                            onClick={() => dispatch(addToHistory(film.name))}
+                            onClick={() => dispatch(addToHistory({ query: film.name, time: getTimeStamp() }))}
                         >
                             <li className={style.listItems}>{film.name}</li>
                         </Link>
