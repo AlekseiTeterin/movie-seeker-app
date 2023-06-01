@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './HomePage.module.css';
 import MovieCard from '../../components/MovieCard/MovieCard';
+import Search from '../../components/Search/Search';
 import { useGetMoviesQuery } from '../../store/api/movieApi';
 
 function HomePage() {
@@ -13,10 +14,15 @@ function HomePage() {
         return <div className={style.home}>Loading...</div>;
     }
     return (
-        <div className={style.home}>
-            {data.docs.map((movie) => (
-                <MovieCard key={movie.id} movieData={movie} />
-            ))}
+        <div>
+            <div>
+                <Search />
+            </div>
+            <div className={style.home}>
+                {data.docs.map((movie) => (
+                    <MovieCard key={movie.id} movieData={movie} />
+                ))}
+            </div>
         </div>
     );
 }

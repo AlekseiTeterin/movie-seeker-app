@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import style from './MoviePage.module.css';
 import ButtonFavourite from '../../components/UI/ButtonFavourite';
 import { useGetMovieByIdQuery } from '../../store/api/movieApi';
+import { PLUG_IMAGE_MOVIE_CARD } from '../../store/CONSTANTS';
 
 function MoviePage() {
     const params = useParams();
@@ -20,7 +21,11 @@ function MoviePage() {
             <div className={style.image}>
                 <img
                     className={style.poster}
-                    src={data.poster.url}
+                    src={
+                        data.poster
+                            ? data.poster.url
+                            : PLUG_IMAGE_MOVIE_CARD
+                    }
                     alt={data.name}
                     height='100%'
                 />
@@ -52,14 +57,14 @@ function MoviePage() {
                     <div className={style.tabex}>В ролях: </div>
                     <div>
                         {data.persons.slice(0, 5).map((actor) => (
-                            <div key={actor.id}> {actor.name}</div>
+                            <div key={actor.id}> {actor?.name}</div>
                         ))}
                     </div>
                 </div>
 
                 <div>
                     <Link
-                        to={data.videos.trailers[0].url}
+                        to={data.videos?.trailers[0]?.url}
                         className={style.link}
                     >
                         Смотреть трейлер

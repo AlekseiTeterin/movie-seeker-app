@@ -4,3 +4,4 @@ export const REGULAR_EXPRESSION_FOR_PASSWORD =
 export const MIN_PASSWORD_LENGTH = 8;
 export const MAX_PASSWORD_LENGTH = 20;
 export const MAX_NICK_NAME_LENGTH = 10;
+export const PLUG_IMAGE_MOVIE_CARD = 'https://universalfilmschool.in/wp-content/uploads/2014/05/b1-3.png';

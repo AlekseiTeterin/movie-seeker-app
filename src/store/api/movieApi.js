@@ -31,8 +31,19 @@ export const movieApi = createApi({
             query: (id) => ({
                 url: `/v1.3/movie/${id}`,
             })
+        }),
+        getMovieByName: builder.query({
+            query: (searchParam) => ({
+                url: '/v1.3/movie',
+                params: {
+                    name: searchParam,
+                }
+            }),
+            transformResponse(response) {
+                return response.docs;
+            }
         })
     }),
 });
 
-export const { useGetRandomMovieQuery, useGetMoviesQuery, useGetMovieByIdQuery } = movieApi;
+export const { useGetRandomMovieQuery, useGetMoviesQuery, useGetMovieByIdQuery, useGetMovieByNameQuery } = movieApi;
