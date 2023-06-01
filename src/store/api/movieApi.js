@@ -5,7 +5,7 @@ const key = process.env.REACT_APP_X_API_KEY;
 export const movieApi = createApi({
     reducerPath: 'movieApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://api.kinopoisk.dev',
+        baseUrl: 'https://api.kinopoisk.dev/v1.3/movie',
         method: 'GET',
         headers: {
             'X-API-KEY': key,
@@ -15,12 +15,11 @@ export const movieApi = createApi({
     endpoints: (builder) => ({
         getRandomMovie: builder.query({
             query: () => ({
-                url: '/v1.3/movie/random',
+                url: '/random',
             }),
         }),
         getMovies: builder.query({
             query: (limit) => ({
-                url: '/v1.3/movie',
                 params: {
                     limit,
                     page: 3,
@@ -29,10 +28,17 @@ export const movieApi = createApi({
         }),
         getMovieById: builder.query({
             query: (id) => ({
-                url: `/v1.3/movie/${id}`,
+                url: `/${id}`,
+            })
+        }),
+        getMovieByName: builder.query({
+            query: (name) => ({
+                params: {
+                    name,
+                }
             })
         })
     }),
 });
 
-export const { useGetRandomMovieQuery, useGetMoviesQuery, useGetMovieByIdQuery } = movieApi;
+export const { useGetRandomMovieQuery, useGetMoviesQuery, useGetMovieByIdQuery, useGetMovieByNameQuery } = movieApi;

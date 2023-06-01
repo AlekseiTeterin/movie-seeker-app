@@ -5,6 +5,7 @@ import BaseLayout from './components/BaseLayout/BaseLayout';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MoviePage from './pages/MoviePage/MoviePage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
+import SearchPage from './pages/SearchPage/SearchPage';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
@@ -18,6 +19,7 @@ function App() {
                     <Route path='/signin' element={<LoginPage />} />
                     <Route path='/signup' element={<RegisterPage />} />
                     <Route path='/movie/:id' element={<MoviePage />} />
+                    <Route path='/search/:query' element={<SearchPage />} />
                 </Routes>
             </Suspense>
         </div>
