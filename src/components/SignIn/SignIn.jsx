@@ -4,6 +4,7 @@ import store from '../../store';
 import { IsAuthContext } from '../../store/context';
 import { setCurrentUser } from '../../store/slices/currentUserSlice';
 import { setFavourite } from '../../store/slices/favouriteSlice';
+import { setHistory } from '../../store/slices/historySlice';
 import LSKeyBuilder from '../../utils/LSKeyBuilder';
 import SignInForm from '../Forms/SignInForm';
 
@@ -36,10 +37,16 @@ function SignIn() {
                         ) || []
                     )
                 );
+                dispatch(
+                    setHistory(
+                        JSON.parse(
+                            localStorage.getItem(LSKeyBuilder('history'))
+                        ) || []
+                    )
+                );
             }
         });
-        // позже не забыть добавить логику добавления в store избранного
-        // и истории поиска при успешной авторизации пользователя
+
         return isTruthParams;
     };
 

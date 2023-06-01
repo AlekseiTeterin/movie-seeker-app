@@ -23,4 +23,4 @@ const historySlice = createSlice({
 });
 
 export const { setHistory, removeHistory, addToHistory } = historySlice.actions;
-export const favourite = historySlice.reducer;
+export const history = historySlice.reducer;

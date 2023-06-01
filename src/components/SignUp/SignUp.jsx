@@ -5,6 +5,7 @@ import store from '../../store';
 import { IsAuthContext } from '../../store/context';
 import { setCurrentUser } from '../../store/slices/currentUserSlice';
 import { setFavourite } from '../../store/slices/favouriteSlice';
+import { setHistory } from '../../store/slices/historySlice';
 import LSKeyBuilder from '../../utils/LSKeyBuilder';
 import RegisterForm from '../Forms/RegisterForm';
 
@@ -31,7 +32,9 @@ function SignUp() {
         array.push(user);
         localStorage.setItem('users', JSON.stringify(array));
         dispatch(setFavourite([]));
+        dispatch(setHistory([]));
         localStorage.setItem(LSKeyBuilder('favourite'), JSON.stringify([]));
+        localStorage.setItem(LSKeyBuilder('history'), JSON.stringify([]));
     };
 
     return (
