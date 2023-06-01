@@ -22,7 +22,7 @@ function MovieCard({ movieData }) {
                     src={
                         movieData.poster
                             ? movieData.poster.previewUrl
-                            : { PLUG_IMAGE_MOVIE_CARD }
+                            : PLUG_IMAGE_MOVIE_CARD
                     }
                     alt={movieData.name}
                 />

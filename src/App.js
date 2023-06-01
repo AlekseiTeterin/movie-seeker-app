@@ -2,12 +2,12 @@ import { React, lazy, Suspense } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import BaseLayout from './components/BaseLayout/BaseLayout';
-import LoginPage from './pages/LoginPage/LoginPage';
-import MoviePage from './pages/MoviePage/MoviePage';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
-import SearchPage from './pages/SearchPage/SearchPage';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
+const MoviePage = lazy(() => import('./pages/MoviePage/MoviePage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
+const SearchPage = lazy(() => import('./pages/SearchPage/SearchPage'));
 
 function App() {
     return (

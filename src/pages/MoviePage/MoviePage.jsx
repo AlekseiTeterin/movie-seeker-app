@@ -24,7 +24,7 @@ function MoviePage() {
                     src={
                         data.poster
                             ? data.poster.url
-                            : { PLUG_IMAGE_MOVIE_CARD }
+                            : PLUG_IMAGE_MOVIE_CARD
                     }
                     alt={data.name}
                     height='100%'
