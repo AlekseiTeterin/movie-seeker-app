@@ -14,10 +14,10 @@ const historySlice = createSlice({
             state.history = action.payload;
         },
         removeHistory(state) {
-            state.favourites = [];
+            state.history = [];
         },
         addToHistory(state, action) {
-            state.favourites.push(action.payload);
+            state.history.push(action.payload);
         },
     },
 });

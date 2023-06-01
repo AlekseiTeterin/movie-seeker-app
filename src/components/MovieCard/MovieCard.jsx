@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import style from './MovieCard.module.css';
+import { PLUG_IMAGE_MOVIE_CARD } from '../../store/CONSTANTS';
 import { IsAuthContext } from '../../store/context';
 
 function MovieCard({ movieData }) {
@@ -18,7 +19,11 @@ function MovieCard({ movieData }) {
                 </div>
                 <img
                     className={style.poster}
-                    src={movieData.poster.previewUrl}
+                    src={
+                        movieData.poster
+                            ? movieData.poster.previewUrl
+                            : { PLUG_IMAGE_MOVIE_CARD }
+                    }
                     alt={movieData.name}
                 />
             </Link>
