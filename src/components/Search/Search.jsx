@@ -36,18 +36,18 @@ function Search() {
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
                     />
-                    <Button
-                        className={style.btn}
-                        variant='outlined'
-                        color='secondary'
-                        onClick={addToHistoryHandler}
-                    >
-                        <Link
+                    <Link
                             to={isAuth ? `/search/${searchValue}` : '/signin'}
                         >
-                            Поиск
-                        </Link>
-                    </Button>
+                        <Button
+                            className={style.btn}
+                            variant='outlined'
+                            color='secondary'
+                            onClick={addToHistoryHandler}
+                        >
+                            Поиск  
+                        </Button>
+                    </Link>
                 </div>
             </div>
             <div className={style.dropList}>
@@ -55,7 +55,7 @@ function Search() {
                     {data?.slice(0, 8).map((film) => (
                         <Link
                             key={film.id}
-                            to={`/search/${film.name}`}
+                            to={isAuth ? `/search/${film.name}` : '/signin'}
                             onClick={() => dispatch(addToHistory({ query: film.name, time: getTimeStamp() }))}
                         >
                             <li className={style.listItems}>{film.name}</li>
