@@ -5,7 +5,9 @@ import React, { useState } from 'react';
 const IsAuthContext = React.createContext();
 
 function IsAuthContextProvider({ children }) {
-    const [isAuth, setIsAuth] = useState(!!JSON.parse(localStorage.getItem('currentUser')));
+    const [isAuth, setIsAuth] = useState(
+        !!JSON.parse(localStorage.getItem('currentUser')).userName
+    );
     const toggleAuth = () => setIsAuth(!isAuth);
 
     return (
