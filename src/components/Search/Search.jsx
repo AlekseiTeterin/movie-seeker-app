@@ -4,10 +4,11 @@ import { TextField, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import style from './Search.module.css';
+import useDebounce from '../../hooks/useDebounce';
 import { useGetMovieByNameQuery } from '../../store/api/movieApi';
 import { IsAuthContext } from '../../store/context';
 import { addToHistory } from '../../store/slices/historySlice';
-import useDebounce from '../../utils/useDebounce';
+import getTimeStamp from '../../utils/getTimeStamp';
 
 function Search() {
     const { isAuth } = useContext(IsAuthContext);
@@ -16,7 +17,9 @@ function Search() {
     const debounce = useDebounce(searchValue);
     const addToHistoryHandler = () => {
         if (searchValue !== '') {
-            dispatch(addToHistory(searchValue));
+            dispatch(
+                addToHistory({ query: searchValue, time: getTimeStamp() })
+            );
         }
     };
     const { data } = useGetMovieByNameQuery(debounce, {
@@ -33,18 +36,16 @@ function Search() {
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
                     />
-                    <Button
-                        className={style.btn}
-                        variant='outlined'
-                        color='secondary'
-                        onClick={addToHistoryHandler}
-                    >
-                        <Link
-                            to={isAuth ? `/search/${searchValue}` : '/signin'}
+                    <Link to={isAuth ? `/search/${searchValue}` : '/signin'}>
+                        <Button
+                            className={style.btn}
+                            variant='outlined'
+                            color='secondary'
+                            onClick={addToHistoryHandler}
                         >
                             Поиск
-                        </Link>
-                    </Button>
+                        </Button>
+                    </Link>
                 </div>
             </div>
             <div className={style.dropList}>
@@ -52,8 +53,15 @@ function Search() {
                     {data?.slice(0, 8).map((film) => (
                         <Link
                             key={film.id}
-                            to={`/search/${film.name}`}
-                            onClick={() => dispatch(addToHistory(film.name))}
+                            to={isAuth ? `/search/${film.name}` : '/signin'}
+                            onClick={() =>
+                                dispatch(
+                                    addToHistory({
+                                        query: film.name,
+                                        time: getTimeStamp(),
+                                    })
+                                )
+                            }
                         >
                             <li className={style.listItems}>{film.name}</li>
                         </Link>

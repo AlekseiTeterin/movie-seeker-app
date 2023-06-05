@@ -13,7 +13,7 @@ function SearchPage() {
             {error && <div className={style.movie}>Something error. Oops.</div>}
             {data &&
                 data.map((film) => (
-                    <MovieCard key={film.id} movieData={film} />
+                    <MovieCard key={film.id} movieId={film.id} />
                 ))}
         </div>
     );

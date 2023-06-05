@@ -2,29 +2,38 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import style from './MovieCard.module.css';
+import { useGetMovieByIdQuery } from '../../store/api/movieApi';
 import { PLUG_IMAGE_MOVIE_CARD } from '../../store/CONSTANTS';
 import { IsAuthContext } from '../../store/context';
 
-function MovieCard({ movieData }) {
+function MovieCard({ movieId }) {
+    const { data, isLoading, error } = useGetMovieByIdQuery(movieId);
     const { isAuth } = useContext(IsAuthContext);
+
+    if (error) {
+        return <div className={style.smallCard}>Something error</div>;
+    }
+    if (isLoading) {
+        return <div className={style.smallCard}>Loading...</div>;
+    }
     return (
         <div className={style.smallCard}>
-            <Link to={isAuth ? `/movie/${movieData.id}` : '/signin'}>
-                <div className={style.rating}>{movieData.rating.kp} kp</div>
+            <Link to={isAuth ? `/movie/${data.id}` : '/signin'}>
+                <div className={style.rating}>{data.rating.kp} kp</div>
                 <div className={style.description}>
-                    <div className={style.title}>{movieData.name}</div>
+                    <div className={style.title}>{data.name}</div>
                     <div className={style.release}>
-                        {movieData.year} {movieData.genres[0].name}
+                        {data.year} {data.genres[0].name}
                     </div>
                 </div>
                 <img
                     className={style.poster}
                     src={
-                        movieData.poster
-                            ? movieData.poster.previewUrl
+                        data.poster
+                            ? data.poster.previewUrl
                             : PLUG_IMAGE_MOVIE_CARD
                     }
-                    alt={movieData.name}
+                    alt={data.name}
                 />
             </Link>
         </div>

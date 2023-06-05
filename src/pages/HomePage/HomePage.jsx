@@ -20,7 +20,7 @@ function HomePage() {
             </div>
             <div className={style.home}>
                 {data.docs.map((movie) => (
-                    <MovieCard key={movie.id} movieData={movie} />
+                    <MovieCard key={movie.id} movieId={movie.id} />
                 ))}
             </div>
         </div>
