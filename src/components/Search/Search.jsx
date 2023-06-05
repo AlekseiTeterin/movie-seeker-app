@@ -4,11 +4,11 @@ import { TextField, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import style from './Search.module.css';
+import useDebounce from '../../hooks/useDebounce';
 import { useGetMovieByNameQuery } from '../../store/api/movieApi';
 import { IsAuthContext } from '../../store/context';
 import { addToHistory } from '../../store/slices/historySlice';
 import getTimeStamp from '../../utils/getTimeStamp';
-import useDebounce from '../../utils/useDebounce';
 
 function Search() {
     const { isAuth } = useContext(IsAuthContext);
@@ -36,16 +36,14 @@ function Search() {
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
                     />
-                    <Link
-                            to={isAuth ? `/search/${searchValue}` : '/signin'}
-                        >
+                    <Link to={isAuth ? `/search/${searchValue}` : '/signin'}>
                         <Button
                             className={style.btn}
                             variant='outlined'
                             color='secondary'
                             onClick={addToHistoryHandler}
                         >
-                            Поиск  
+                            Поиск
                         </Button>
                     </Link>
                 </div>
@@ -56,7 +54,14 @@ function Search() {
                         <Link
                             key={film.id}
                             to={isAuth ? `/search/${film.name}` : '/signin'}
-                            onClick={() => dispatch(addToHistory({ query: film.name, time: getTimeStamp() }))}
+                            onClick={() =>
+                                dispatch(
+                                    addToHistory({
+                                        query: film.name,
+                                        time: getTimeStamp(),
+                                    })
+                                )
+                            }
                         >
                             <li className={style.listItems}>{film.name}</li>
                         </Link>

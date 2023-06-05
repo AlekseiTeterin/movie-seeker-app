@@ -1,10 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import style from './HistoryPage.module.css';
+import useHistory from '../../hooks/useHistory';
 
 function HistoryPage() {
-    const historyArray = useSelector((state) => state.history.history);
+    const historyArray = useHistory();
     const reverseHistoryArray = JSON.parse(
         JSON.stringify(historyArray)
     ).reverse();

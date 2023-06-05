@@ -1,10 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import style from './FavouritePage.module.css';
 import MovieCard from '../../components/MovieCard/MovieCard';
+import useFavourite from '../../hooks/useFavourite';
 
 function FavouritePage() {
-    const favouriteArray = useSelector((state) => state.favourite.favourites);
+    const favouriteArray = useFavourite();
 
     if (favouriteArray.length === 0) {
         return (
