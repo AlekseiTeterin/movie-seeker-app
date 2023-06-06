@@ -5,7 +5,6 @@ import { IsAuthContext } from '../../store/context';
 
 function ShowButtonFavourite({ filmId }) {
     const { isAuth } = useContext(IsAuthContext);
-
     return isAuth ? <ButtonFavourite id={filmId} /> : <div />;
 }
 

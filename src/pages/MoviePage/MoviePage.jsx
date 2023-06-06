@@ -2,14 +2,14 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import style from './MoviePage.module.css';
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
-import ButtonFavourite from '../../components/UI/ButtonFavourite';
+import ShowButtonFavourite from '../../components/UI/ShowButtonFavourite';
 import { useGetMovieByIdQuery } from '../../store/api/movieApi';
 import { PLUG_IMAGE_MOVIE_CARD } from '../../store/CONSTANTS';
 
 function MoviePage() {
     const params = useParams();
-    const filmId = params.id;
-    const { data, isLoading } = useGetMovieByIdQuery(filmId);
+    const movieId = params.id;
+    const { data, isLoading } = useGetMovieByIdQuery(movieId);
 
     if (isLoading) {
         return <div className={style.movie}>Loading...</div>;
@@ -43,7 +43,7 @@ function MoviePage() {
                                 ))}
                             </div>
                         </div>
-                        <ButtonFavourite id={filmId} />
+                        <ShowButtonFavourite filmId={Number(movieId)} />
                     </div>
 
                     <div>Описание: {data.description}</div>
