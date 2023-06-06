@@ -43,7 +43,9 @@ function MoviePage() {
                                 ))}
                             </div>
                         </div>
-                        <ShowButtonFavourite filmId={Number(movieId)} />
+                        <div className={style.btn}>
+                            <ShowButtonFavourite filmId={Number(movieId)} />
+                        </div>
                     </div>
 
                     <div>Описание: {data.description}</div>
