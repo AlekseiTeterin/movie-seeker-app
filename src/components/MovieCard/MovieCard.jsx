@@ -5,7 +5,7 @@ import style from './MovieCard.module.css';
 import { useGetMovieByIdQuery } from '../../store/api/movieApi';
 import { PLUG_IMAGE_MOVIE_CARD } from '../../store/CONSTANTS';
 import { IsAuthContext } from '../../store/context';
-import ButtonFavourite from '../UI/ButtonFavourite';
+import ShowButtonFavourite from '../UI/ButtonFavourite';
 // import IconHeartFavourite from '../UI/IconHeartFavourite';
 
 function MovieCard({ movieId }) {
@@ -41,7 +41,7 @@ function MovieCard({ movieId }) {
                     alt={data.name}
                 />
             </Link>
-            <ButtonFavourite id={data.id} />
+            <ShowButtonFavourite filmId={data.id} />
         </div>
     );
 }
