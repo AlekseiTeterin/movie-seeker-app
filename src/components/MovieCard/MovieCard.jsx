@@ -5,6 +5,8 @@ import style from './MovieCard.module.css';
 import { useGetMovieByIdQuery } from '../../store/api/movieApi';
 import { PLUG_IMAGE_MOVIE_CARD } from '../../store/CONSTANTS';
 import { IsAuthContext } from '../../store/context';
+import ButtonFavourite from '../UI/ButtonFavourite';
+// import IconHeartFavourite from '../UI/IconHeartFavourite';
 
 function MovieCard({ movieId }) {
     const { data, isLoading, error } = useGetMovieByIdQuery(movieId);
@@ -20,6 +22,9 @@ function MovieCard({ movieId }) {
         <div className={style.smallCard}>
             <Link to={isAuth ? `/movie/${data.id}` : '/signin'}>
                 <div className={style.rating}>{data.rating.kp} kp</div>
+                {/* <div className={style.heart}>
+                    <IconHeartFavourite id={data.id} />
+                </div> */}
                 <div className={style.description}>
                     <div className={style.title}>{data.name}</div>
                     <div className={style.release}>
@@ -36,6 +41,7 @@ function MovieCard({ movieId }) {
                     alt={data.name}
                 />
             </Link>
+            <ButtonFavourite id={data.id} />
         </div>
     );
 }
