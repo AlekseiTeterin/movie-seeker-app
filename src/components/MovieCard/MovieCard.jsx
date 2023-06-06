@@ -1,14 +1,29 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import style from './MovieCard.module.css';
+import fillHeart from '../../images/fill-heart.svg';
+import heart from '../../images/heart.svg';
 import { useGetMovieByIdQuery } from '../../store/api/movieApi';
 import { PLUG_IMAGE_MOVIE_CARD } from '../../store/CONSTANTS';
 import { IsAuthContext } from '../../store/context';
+import ShowButtonFavourite from '../UI/ShowButtonFavourite';
 
 function MovieCard({ movieId }) {
     const { data, isLoading, error } = useGetMovieByIdQuery(movieId);
     const { isAuth } = useContext(IsAuthContext);
+    const fav = useSelector((state) => state.favourite.favourites);
+    const isFavourite = fav.includes(movieId);
+    let heartImage;
+
+    if (isAuth) {
+        if (!isFavourite) {
+            heartImage = <img src={heart} alt='black heart' width={50} />;
+        } else {
+            heartImage = <img src={fillHeart} alt='red heart' width={50} />;
+        }
+    }
 
     if (error) {
         return <div className={style.smallCard}>Something error</div>;
@@ -18,8 +33,9 @@ function MovieCard({ movieId }) {
     }
     return (
         <div className={style.smallCard}>
-            <Link to={isAuth ? `/movie/${data.id}` : '/signin'}>
+            <Link to={`/movie/${data.id}`}>
                 <div className={style.rating}>{data.rating.kp} kp</div>
+                <div className={style.heart}>{heartImage}</div>
                 <div className={style.description}>
                     <div className={style.title}>{data.name}</div>
                     <div className={style.release}>
@@ -36,6 +52,7 @@ function MovieCard({ movieId }) {
                     alt={data.name}
                 />
             </Link>
+            <ShowButtonFavourite filmId={data.id} />
         </div>
     );
 }
