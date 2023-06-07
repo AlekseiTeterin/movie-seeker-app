@@ -22,7 +22,9 @@
     display: flex;
     justify-content: space-between;
 }
-
+.btn {
+    width: 20vw;
+}
 .name {
     margin-bottom: 0.3vh;
     font-size: 50px;

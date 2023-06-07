@@ -1,18 +1,21 @@
 .buttonDiv {
-    width: 30%;
-    align-self: center;
+    margin-top: 1vh;
+    display: flex;
+    justify-content: space-around;
 }
 .btnAdd {
-    width: 14vw;
+    border-radius: 10px;
+    width: 80%;
     height: 5vh;
-    background-color: rgb(59, 220, 86);
+    background-color: rgb(181, 66, 203);
     font-size: 15px;
 }
 
 .btnDel {
-    width: 14vw;
+    border-radius: 10px;
+    width: 80%;
     height: 5vh;
-    background-color: rgb(228, 65, 65);
+    background-color: rgb(246, 42, 42);
     font-size: 15px;
 }
 

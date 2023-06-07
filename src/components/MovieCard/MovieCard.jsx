@@ -19,9 +19,9 @@ function MovieCard({ movieId }) {
 
     if (isAuth) {
         if (!isFavourite) {
-            heartImage = <img src={heart} alt='black heart' width={50} />;
+            heartImage = <img src={heart} alt='black heart' width={40} />;
         } else {
-            heartImage = <img src={fillHeart} alt='red heart' width={50} />;
+            heartImage = <img src={fillHeart} alt='red heart' width={40} />;
         }
     }
 
@@ -34,7 +34,9 @@ function MovieCard({ movieId }) {
     return (
         <div className={style.smallCard}>
             <Link to={`/movie/${data.id}`}>
-                <div className={style.rating}>{data.rating.kp} kp</div>
+                <div className={style.rating}>
+                    {data.rating.kp.toFixed(2)} kp
+                </div>
                 <div className={style.heart}>{heartImage}</div>
                 <div className={style.description}>
                     <div className={style.title}>{data.name}</div>

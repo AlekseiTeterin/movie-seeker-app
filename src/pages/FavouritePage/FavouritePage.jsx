@@ -9,7 +9,7 @@ function FavouritePage() {
     if (favouriteArray.length === 0) {
         return (
             <div className={style.favourite}>
-                <h1>Здесь пока ничего нет</h1>
+                <h1>В избранном пока ничего нет</h1>
             </div>
         );
     }

@@ -12,6 +12,8 @@ import {
 } from '@mui/material';
 import propTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import style from './FormsStyle.module.css';
+import * as constants from '../../store/CONSTANTS';
 import formValidator from '../../utils/formValidator';
 
 function SignInForm({ handleSubmit, buttonName }) {
@@ -22,12 +24,8 @@ function SignInForm({ handleSubmit, buttonName }) {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
-    const nameFieldText = 'только латинские буквы, цифры и _';
-    const passwordFieldText =
-        'пароль должен состоять из латинских букв (минимум одна заглавная и одна строчная), минимум 1 символа или цифры';
-
     return (
-        <Container component='main' maxWidth='xs'>
+        <Container className={style.container} component='main'>
             <TextField
                 label='Введите Nick-Name'
                 value={name}
@@ -39,7 +37,9 @@ function SignInForm({ handleSubmit, buttonName }) {
                     setName(e.target.value);
                     setAltText(formValidator(e.target.value, false));
                 }}
-                helperText={altText !== '' ? altText : nameFieldText}
+                helperText={
+                    altText !== '' ? altText : constants.NAME_FIELD_TEXT
+                }
                 error={Boolean(altText)}
             />
             <TextField
@@ -54,7 +54,9 @@ function SignInForm({ handleSubmit, buttonName }) {
                     setAltTextPassword(formValidator(e.target.value, true));
                 }}
                 helperText={
-                    altTextPassword !== '' ? altTextPassword : passwordFieldText
+                    altTextPassword !== ''
+                        ? altTextPassword
+                        : constants.PASSWORD_FIELD_TEXT
                 }
                 error={Boolean(altTextPassword)}
                 InputProps={{

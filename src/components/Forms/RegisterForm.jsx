@@ -12,6 +12,8 @@ import {
 } from '@mui/material';
 import propTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import style from './FormsStyle.module.css';
+import * as constants from '../../store/CONSTANTS';
 import formValidator from '../../utils/formValidator';
 import isOccupiedName from '../../utils/isOccupiedName';
 
@@ -24,14 +26,10 @@ function RegisterForm({ handleSubmit, buttonName }) {
     const [isConfirmed, setIsConfirmed] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    const nameFieldText = 'только латинские буквы, цифры и _';
-    const passwordFieldText =
-        'пароль должен состоять из латинских букв (минимум одна заглавная и одна строчная), минимум 1 символа или цифры';
-
     const navigate = useNavigate();
 
     return (
-        <Container component='main' maxWidth='xs'>
+        <Container className={style.container} component='main'>
             <TextField
                 label='Введите Nick-Name'
                 value={name}
@@ -43,7 +41,9 @@ function RegisterForm({ handleSubmit, buttonName }) {
                     setName(e.target.value);
                     setAltText(formValidator(e.target.value, false));
                 }}
-                helperText={altText !== '' ? altText : nameFieldText}
+                helperText={
+                    altText !== '' ? altText : constants.NAME_FIELD_TEXT
+                }
                 error={Boolean(altText)}
             />
             <TextField
@@ -58,7 +58,9 @@ function RegisterForm({ handleSubmit, buttonName }) {
                     setAltTextPassword(formValidator(e.target.value, true));
                 }}
                 helperText={
-                    altTextPassword !== '' ? altTextPassword : passwordFieldText
+                    altTextPassword !== ''
+                        ? altTextPassword
+                        : constants.PASSWORD_FIELD_TEXT
                 }
                 error={Boolean(altTextPassword)}
                 InputProps={{
