@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 import React, { useContext, useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import { TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import style from './Search.module.css';
@@ -36,21 +36,18 @@ function Search() {
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
                     />
-                    <Link to={isAuth ? `/search/${searchValue}` : '/signin'}>
-                        <Button
-                            className={style.btn}
-                            variant='outlined'
-                            color='secondary'
-                            onClick={addToHistoryHandler}
-                        >
-                            Поиск
-                        </Button>
+                    <Link
+                        className={style.btn}
+                        to={isAuth ? `/search/${searchValue}` : '/signin'}
+                        onClick={addToHistoryHandler}
+                    >
+                        Поиск
                     </Link>
                 </div>
             </div>
             <div className={style.dropList}>
                 <ul>
-                    {data?.slice(0, 8).map((film) => (
+                    {data?.slice(0, 7).map((film) => (
                         <Link
                             key={film.id}
                             to={isAuth ? `/search/${film.name}` : '/signin'}

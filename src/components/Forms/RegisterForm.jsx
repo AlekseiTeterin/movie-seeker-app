@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import propTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import style from './FormsStyle.module.css';
 import formValidator from '../../utils/formValidator';
 import isOccupiedName from '../../utils/isOccupiedName';
 
@@ -31,7 +32,7 @@ function RegisterForm({ handleSubmit, buttonName }) {
     const navigate = useNavigate();
 
     return (
-        <Container component='main' maxWidth='xs'>
+        <Container className={style.container} component='main'>
             <TextField
                 label='Введите Nick-Name'
                 value={name}

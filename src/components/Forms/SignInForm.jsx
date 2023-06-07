@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import propTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import style from './FormsStyle.module.css';
 import formValidator from '../../utils/formValidator';
 
 function SignInForm({ handleSubmit, buttonName }) {
@@ -27,7 +28,7 @@ function SignInForm({ handleSubmit, buttonName }) {
         'пароль должен состоять из латинских букв (минимум одна заглавная и одна строчная), минимум 1 символа или цифры';
 
     return (
-        <Container component='main' maxWidth='xs'>
+        <Container className={style.container} component='main'>
             <TextField
                 label='Введите Nick-Name'
                 value={name}
