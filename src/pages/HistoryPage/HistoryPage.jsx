@@ -12,6 +12,13 @@ function HistoryPage() {
         JSON.stringify(historyArray)
     ).reverse();
 
+    if (historyArray.length === 0) {
+        return (
+            <div className={style.history}>
+                <h1>История запросов пока пуста</h1>
+            </div>
+        );
+    }
     return (
         <div className={style.history}>
             <h1>История поисковых запросов:</h1>
