@@ -1,3 +1,8 @@
+.name {
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Kalam', cursor;
+}
 .searchPage {
     display: flex;
     flex-wrap: wrap;
