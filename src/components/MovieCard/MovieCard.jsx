@@ -35,13 +35,13 @@ function MovieCard({ movieId }) {
         <div className={style.smallCard}>
             <Link to={`/movie/${data.id}`}>
                 <div className={style.rating}>
-                    {data.rating.kp.toFixed(2)} kp
+                    {data.rating.kp?.toFixed(2)} kp
                 </div>
                 <div className={style.heart}>{heartImage}</div>
                 <div className={style.description}>
                     <div className={style.title}>{data.name}</div>
                     <div className={style.release}>
-                        {data.year} {data.genres[0].name}
+                        {data.year} {data.genres[0]?.name}
                     </div>
                 </div>
                 <img
