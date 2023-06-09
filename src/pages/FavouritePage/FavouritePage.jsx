@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 import style from './FavouritePage.module.css';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import useFavourite from '../../hooks/useFavourite';
+import { IsAuthContext } from '../../store/IsAuthContext';
 
 function FavouritePage() {
     const favouriteArray = useFavourite();
+    const { isAuth } = useContext(IsAuthContext);
+
+    if (!isAuth) return <Navigate to='/signin' />;
 
     if (favouriteArray.length === 0) {
         return (

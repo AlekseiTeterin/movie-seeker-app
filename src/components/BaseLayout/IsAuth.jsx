@@ -4,21 +4,18 @@ import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import style from './BaseLayout.module.css';
-import store from '../../store';
 import { IsAuthContext } from '../../store/IsAuthContext';
 import { removeCurrentUser } from '../../store/slices/currentUserSlice';
+import setDataInLS from '../../utils/setDataInLS';
 
 function IsAuth() {
     const dispatch = useDispatch();
     const { isAuth, toggleAuth } = useContext(IsAuthContext);
-    const name = useSelector((state) => state.currentUser.userName);
+    const user = useSelector((state) => state.currentUser);
 
     const clickHandler = () => {
         dispatch(removeCurrentUser());
-        localStorage.setItem(
-            'currentUser',
-            JSON.stringify(store.getState().currentUser)
-        );
+        setDataInLS('currentUser', {});
         toggleAuth();
     };
 
@@ -33,7 +30,7 @@ function IsAuth() {
         </ul>
     ) : (
         <ul className={style.links}>
-            <li className={style.user}>{name}</li>
+            <li className={style.user}>{user.userName}</li>
             <li>
                 <NavLink to='/favourite'>Избранное</NavLink>
             </li>

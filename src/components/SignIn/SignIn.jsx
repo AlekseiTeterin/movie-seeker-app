@@ -5,16 +5,17 @@ import { IsAuthContext } from '../../store/IsAuthContext';
 import { setCurrentUser } from '../../store/slices/currentUserSlice';
 import { setFavourite } from '../../store/slices/favouriteSlice';
 import { setHistory } from '../../store/slices/historySlice';
+import getDataFromLS from '../../utils/getDataFromLS';
 import LSKeyBuilder from '../../utils/LSKeyBuilder';
+import setDataInLS from '../../utils/setDataInLS';
 import SignInForm from '../Forms/SignInForm';
 
 function SignIn() {
     const dispatch = useDispatch();
+
     const { toggleAuth } = useContext(IsAuthContext);
     const handleLogin = (name, password) => {
-        const array = Array.from(
-            JSON.parse(localStorage.getItem('users')) || {}
-        );
+        const array = Array.from(getDataFromLS('users') || {});
         let isTruthParams = false;
         array.forEach((el) => {
             if (el.userName === name && el.userPassword === password) {
@@ -26,23 +27,12 @@ function SignIn() {
                         userPassword: password,
                     })
                 );
-                localStorage.setItem(
-                    'currentUser',
-                    JSON.stringify(store.getState().currentUser)
+                setDataInLS('currentUser', store.getState().currentUser);
+                dispatch(
+                    setFavourite(getDataFromLS(LSKeyBuilder('favourite')) || [])
                 );
                 dispatch(
-                    setFavourite(
-                        JSON.parse(
-                            localStorage.getItem(LSKeyBuilder('favourite'))
-                        ) || []
-                    )
-                );
-                dispatch(
-                    setHistory(
-                        JSON.parse(
-                            localStorage.getItem(LSKeyBuilder('history'))
-                        ) || []
-                    )
+                    setHistory(getDataFromLS(LSKeyBuilder('history')) || [])
                 );
             }
         });

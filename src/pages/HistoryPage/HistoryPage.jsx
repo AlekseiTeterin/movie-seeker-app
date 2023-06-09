@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import style from './HistoryPage.module.css';
 import useHistory from '../../hooks/useHistory';
+import { IsAuthContext } from '../../store/IsAuthContext';
 import { removeHistory } from '../../store/slices/historySlice';
 
 function HistoryPage() {
@@ -11,7 +12,9 @@ function HistoryPage() {
     const reverseHistoryArray = JSON.parse(
         JSON.stringify(historyArray)
     ).reverse();
+    const { isAuth } = useContext(IsAuthContext);
 
+    if (!isAuth) return <Navigate to='/signin' />;
     if (historyArray.length === 0) {
         return (
             <div className={style.history}>

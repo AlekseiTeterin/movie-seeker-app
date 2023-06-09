@@ -6,7 +6,9 @@ import { IsAuthContext } from '../../store/IsAuthContext';
 import { setCurrentUser } from '../../store/slices/currentUserSlice';
 import { setFavourite } from '../../store/slices/favouriteSlice';
 import { setHistory } from '../../store/slices/historySlice';
+import getDataFromLS from '../../utils/getDataFromLS';
 import LSKeyBuilder from '../../utils/LSKeyBuilder';
+import setDataInLS from '../../utils/setDataInLS';
 import RegisterForm from '../Forms/RegisterForm';
 
 function SignUp() {
@@ -21,20 +23,20 @@ function SignUp() {
             })
         );
         const user = store.getState().currentUser;
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        setDataInLS('currentUser', user);
         toggleAuth();
         const array = Array.from(
-            JSON.parse(localStorage.getItem('users')) || {
+            getDataFromLS('users') || {
                 name: 'Andrew',
-                password: 'rdfs',
+                password: 'rdfs2Dweq',
             }
         );
         array.push(user);
-        localStorage.setItem('users', JSON.stringify(array));
+        setDataInLS('users', array);
         dispatch(setFavourite([]));
         dispatch(setHistory([]));
-        localStorage.setItem(LSKeyBuilder('favourite'), JSON.stringify([]));
-        localStorage.setItem(LSKeyBuilder('history'), JSON.stringify([]));
+        setDataInLS(LSKeyBuilder('favourite'), []);
+        setDataInLS(LSKeyBuilder('history'), []);
     };
 
     return (
