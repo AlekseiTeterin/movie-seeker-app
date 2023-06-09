@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import store from '../../store';
-import { IsAuthContext } from '../../store/context';
+import { IsAuthContext } from '../../store/IsAuthContext';
 import { setCurrentUser } from '../../store/slices/currentUserSlice';
 import { setFavourite } from '../../store/slices/favouriteSlice';
 import { setHistory } from '../../store/slices/historySlice';

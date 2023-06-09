@@ -4,7 +4,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { TextField, InputAdornment, IconButton } from '@mui/material';
 import propTypes from 'prop-types';
-import * as constants from '../../../store/CONSTANTS';
+import * as constants from '../../../CONSTANTS';
 import formValidator from '../../../utils/formValidator';
 
 function PasswordField({

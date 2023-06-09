@@ -2,7 +2,7 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 import propTypes from 'prop-types';
-import * as constants from '../../../store/CONSTANTS';
+import * as constants from '../../../CONSTANTS';
 import formValidator from '../../../utils/formValidator';
 
 function NameField({ userName, setUserName, infoText, setInfoText }) {

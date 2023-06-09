@@ -3,11 +3,11 @@ import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import style from './MovieCard.module.css';
+import { PLUG_IMAGE_MOVIE_CARD } from '../../CONSTANTS';
 import fillHeart from '../../images/fill-heart.svg';
 import heart from '../../images/heart.svg';
 import { useGetMovieByIdQuery } from '../../store/api/movieApi';
-import { PLUG_IMAGE_MOVIE_CARD } from '../../store/CONSTANTS';
-import { IsAuthContext } from '../../store/context';
+import { IsAuthContext } from '../../store/IsAuthContext';
 import ShowButtonFavourite from '../UI/ShowButtonFavourite';
 
 function MovieCard({ movieId }) {

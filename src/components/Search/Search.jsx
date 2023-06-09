@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import style from './Search.module.css';
 import useDebounce from '../../hooks/useDebounce';
 import { useGetMovieByNameQuery } from '../../store/api/movieApi';
-import { IsAuthContext } from '../../store/context';
+import { IsAuthContext } from '../../store/IsAuthContext';
 import { addToHistory } from '../../store/slices/historySlice';
 import getTimeStamp from '../../utils/getTimeStamp';
 

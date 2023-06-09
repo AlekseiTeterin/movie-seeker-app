@@ -1,4 +1,4 @@
-import * as constants from '../store/CONSTANTS';
+import * as constants from '../CONSTANTS';
 
 function formValidator(value, isPasswordArea) {
     if (!isPasswordArea) {

@@ -1,4 +1,4 @@
-import { React, lazy, Suspense } from 'react';
+import { React, lazy, Suspense} from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import BaseLayout from './components/BaseLayout/BaseLayout';
@@ -12,6 +12,7 @@ const HistoryPage = lazy(() => import('./pages/HistoryPage/HistoryPage'));
 const FavouritePage = lazy(() => import('./pages/FavouritePage/FavouritePage'));
 
 function App() {
+    
     return (
         <div className='App'>
             <BaseLayout />

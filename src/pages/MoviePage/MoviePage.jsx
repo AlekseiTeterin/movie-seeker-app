@@ -3,8 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import style from './MoviePage.module.css';
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import ShowButtonFavourite from '../../components/UI/ShowButtonFavourite';
+import { PLUG_IMAGE_MOVIE_CARD } from '../../CONSTANTS';
 import { useGetMovieByIdQuery } from '../../store/api/movieApi';
-import { PLUG_IMAGE_MOVIE_CARD } from '../../store/CONSTANTS';
 
 function MoviePage() {
     const params = useParams();
