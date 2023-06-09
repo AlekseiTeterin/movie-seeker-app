@@ -1,46 +1,35 @@
-# Getting Started with Create React App and Redux
+# Movie-seeker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+Учебный проект в рамках React-интенсива компании Aston
 
-## Available Scripts
+## В проекте реализованы следующие требования к функциональности:
 
-In the project directory, you can run:
+###  - Функциональные компоненты c хуками использовались в приоритете над классовыми. Классовый только [ErrorBoundary](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/components/ErrorBoundary/ErrorBoundary.jsx)
 
-### `npm start`
+### - Есть разделение на [умные](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/pages/HistoryPage/HistoryPage.jsx) и [глупые](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/pages/LoginPage/LoginPage.jsx) компоненты
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### - Есть рендеринг списков [HomePage](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/pages/HomePage/HomePage.jsx),  [Search](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/components/Search/Search.jsx), [History](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/pages/HistoryPage/HistoryPage.jsx)...
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### - Реализованы формы регистрации [RegisterForm](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/components/Forms/RegisterForm.jsx) и авторизации [SignInForm](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/components/Forms/SignInForm.jsx)
 
-### `npm test`
+### - Есть применение Контекст API [IsAuthContext](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/store/IsAuthContext.js). В контексте хранится значение состояния авторизации пользователя и функция для изменения её состояния.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### - Есть применение предохранителя [ErrorBoundary](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/components/ErrorBoundary/ErrorBoundary.jsx) для отлавливания ошибок в данных, необходимых для компонента [MoviePage](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/pages/MoviePage/MoviePage.jsx) 
 
-### `npm run build`
+### - Есть хотя бы один кастомный [хук](https://github.com/AlekseiTeterin/movie-seeker-app/tree/master/src/hooks)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### - Хотя бы несколько компонентов используют PropTypes [PasswordField](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/components/Forms/FormsComponents/PasswordField.jsx), [ConfirmPasswordField](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/components/Forms/FormsComponents/ConfirmPasswordField.jsx), [RegisterForm](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/components/Forms/RegisterForm.jsx)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### - Поиск не должен триггерить много запросов к серверу. Применение кастомного хука [useDebounce](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/hooks/useDebounce.js) позволяет отправлять запросы на сервер только после отсутствия ввода текста в поле поиска в течении 0,5 с.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### - Есть применение [lazy + Suspense](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/App.js). Применено раделение на основании маршрутов. Информация подгружается при переходе по соответствующему пути. 
 
-### `npm run eject`
+### - В проекте используется Modern Redux with Redux Toolkit [store](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/store/index.js)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### - Используются [слайсы](https://github.com/AlekseiTeterin/movie-seeker-app/tree/master/src/store/slices)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### - Есть хотя бы одна кастомная мидлвара [localStorageMiddleware](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/store/localStorageMiddleware.js). Для изменения данных в local storage избранного и истории при добавлении или удалении. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### - Используется RTK Query [movieApi](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/store/api/movieApi.js)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### - Используется [Transforming Responses](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/store/api/movieApi.js)
