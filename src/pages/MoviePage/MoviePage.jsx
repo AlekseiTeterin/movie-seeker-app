@@ -65,12 +65,15 @@ function MoviePage() {
                     </div>
 
                     <div>
-                        <Link
-                            to={data.videos?.trailers[0]?.url}
-                            className={style.link}
-                        >
-                            Смотреть трейлер
-                        </Link>
+                        {data.videos !== undefined &&
+                            data.videos.trailers[0] !== undefined && (
+                                <Link
+                                    to={data.videos?.trailers[0]?.url}
+                                    className={style.link}
+                                >
+                                    Смотреть трейлер
+                                </Link>
+                            )}
                     </div>
                 </div>
             </div>

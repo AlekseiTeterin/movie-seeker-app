@@ -23,27 +23,35 @@ export const movieApi = createApi({
                 url: '/v1.3/movie',
                 params: {
                     limit,
-                    page: 3,
+                    top250: '!null',
+                    type: 'movie',
+                    'poster.previewUrl': '!null',
+                    page: 2,
                 },
             }),
         }),
         getMovieById: builder.query({
             query: (id) => ({
                 url: `/v1.3/movie/${id}`,
-            })
+            }),
         }),
         getMovieByName: builder.query({
             query: (searchParam) => ({
                 url: '/v1.3/movie',
                 params: {
                     name: searchParam,
-                }
+                },
             }),
             transformResponse(response) {
                 return response.docs;
-            }
-        })
+            },
+        }),
     }),
 });
 
-export const { useGetRandomMovieQuery, useGetMoviesQuery, useGetMovieByIdQuery, useGetMovieByNameQuery } = movieApi;
+export const {
+    useGetRandomMovieQuery,
+    useGetMoviesQuery,
+    useGetMovieByIdQuery,
+    useGetMovieByNameQuery,
+} = movieApi;

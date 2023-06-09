@@ -1,20 +1,13 @@
 /* eslint-disable no-alert */
 /* eslint-disable react/require-default-props */
 import React, { useState } from 'react';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import {
-    Container,
-    TextField,
-    Button,
-    InputAdornment,
-    IconButton,
-} from '@mui/material';
+import { Container, Button } from '@mui/material';
 import propTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import ConfirmPasswordField from './FormsComponents/ConfirmPasswordField';
+import NameField from './FormsComponents/NameField';
+import PasswordField from './FormsComponents/PasswordField';
 import style from './FormsStyle.module.css';
-import * as constants from '../../store/CONSTANTS';
-import formValidator from '../../utils/formValidator';
 import isOccupiedName from '../../utils/isOccupiedName';
 
 function RegisterForm({ handleSubmit, buttonName }) {
@@ -30,93 +23,26 @@ function RegisterForm({ handleSubmit, buttonName }) {
 
     return (
         <Container className={style.container} component='main'>
-            <TextField
-                label='Введите Nick-Name'
-                value={name}
-                margin='normal'
-                required
-                fullWidth
-                autoFocus
-                onChange={(e) => {
-                    setName(e.target.value);
-                    setAltText(formValidator(e.target.value, false));
-                }}
-                helperText={
-                    altText !== '' ? altText : constants.NAME_FIELD_TEXT
-                }
-                error={Boolean(altText)}
+            <NameField
+                userName={name}
+                setUserName={setName}
+                infoText={altText}
+                setInfoText={setAltText}
             />
-            <TextField
-                label='Введите пароль 8 - 20 символов'
-                type={showPassword ? 'text' : 'password'}
-                required
-                value={password}
-                fullWidth
-                margin='normal'
-                onChange={(e) => {
-                    setPassword(e.target.value);
-                    setAltTextPassword(formValidator(e.target.value, true));
-                }}
-                helperText={
-                    altTextPassword !== ''
-                        ? altTextPassword
-                        : constants.PASSWORD_FIELD_TEXT
-                }
-                error={Boolean(altTextPassword)}
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment position='end'>
-                            <IconButton
-                                aria-label='toggle password visibility'
-                                onClick={() => setShowPassword(!showPassword)}
-                                edge='end'
-                            >
-                                {showPassword ? (
-                                    <Visibility />
-                                ) : (
-                                    <VisibilityOff />
-                                )}
-                            </IconButton>
-                        </InputAdornment>
-                    ),
-                }}
+            <PasswordField
+                isVisible={showPassword}
+                setIsVisible={setShowPassword}
+                passwordValue={password}
+                setPasswordValue={setPassword}
+                passwordInfo={altTextPassword}
+                setPasswordInfo={setAltTextPassword}
             />
-            <TextField
-                label='Повторите пароль'
-                type={showPassword ? 'text' : 'password'}
-                required
-                value={confirmPassword}
-                fullWidth
-                margin='normal'
-                onChange={(e) => {
-                    setConfirmPassword(e.target.value);
-                    setTimeout(() => {
-                        if (e.target.value === password) {
-                            setIsConfirmed(true);
-                        } else {
-                            setIsConfirmed(false);
-                        }
-                    }, 0);
-                }}
-                helperText={isConfirmed ? '' : 'Значения паролей не совпадают!'}
-                error={confirmPassword !== '' && !isConfirmed}
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment position='end'>
-                            <IconButton
-                                aria-label='toggle password visibility'
-                                onClick={() => setShowPassword(!showPassword)}
-                                edge='end'
-                            >
-                                {showPassword ? (
-                                    <Visibility />
-                                ) : (
-                                    <VisibilityOff />
-                                )}
-                            </IconButton>
-                        </InputAdornment>
-                    ),
-                }}
+            <ConfirmPasswordField
+                oldPasswordValue={password}
+                confirmedPassword={confirmPassword}
+                setConfirmedPassword={setConfirmPassword}
+                isEquals={isConfirmed}
+                setIsEquals={setIsConfirmed}
             />
             <Button
                 type='submit'
