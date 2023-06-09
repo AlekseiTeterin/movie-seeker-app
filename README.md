@@ -1,3 +1,4 @@
+![Иллюстрация к проекту](https://github.com/AlekseiTeterin/movie-seeker-app/blob/master/src/images/imageForProject.jpg)
 # Movie-seeker
 
 Учебный проект в рамках React-интенсива компании Aston
