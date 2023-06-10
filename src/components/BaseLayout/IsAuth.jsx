@@ -6,12 +6,17 @@ import { NavLink } from 'react-router-dom';
 import style from './BaseLayout.module.css';
 import { IsAuthContext } from '../../store/IsAuthContext';
 import { removeCurrentUser } from '../../store/slices/currentUserSlice';
+import { setFavourite } from '../../store/slices/favouriteSlice';
+import { setHistory } from '../../store/slices/historySlice';
+import getHistoryOrFavouriteLS from '../../utils/getHistoryOrFavouriteLS';
 import setDataInLS from '../../utils/setDataInLS';
 
 function IsAuth() {
     const dispatch = useDispatch();
     const { isAuth, toggleAuth } = useContext(IsAuthContext);
     const user = useSelector((state) => state.currentUser);
+    dispatch(setHistory(getHistoryOrFavouriteLS('history')));
+    dispatch(setFavourite(getHistoryOrFavouriteLS('favourite')));
 
     const clickHandler = () => {
         dispatch(removeCurrentUser());

@@ -1,9 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import LSKeyBuilder from '../../utils/LSKeyBuilder';
 
 const initialState = {
-    history: JSON.parse(localStorage.getItem(LSKeyBuilder('history'))) || []
+    history: [],
 };
 
 const historySlice = createSlice({
