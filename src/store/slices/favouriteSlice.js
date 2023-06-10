@@ -1,10 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import LSKeyBuilder from '../../utils/LSKeyBuilder';
 
 const initialState = {
-    favourites:
-        JSON.parse(localStorage.getItem(LSKeyBuilder('favourite'))) || [],
+    favourites: [],
 };
 
 const favouriteSlice = createSlice({

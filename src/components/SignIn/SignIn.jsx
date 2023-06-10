@@ -16,6 +16,7 @@ function SignIn() {
     const { toggleAuth } = useContext(IsAuthContext);
     const handleLogin = (name, password) => {
         const array = Array.from(getDataFromLS('users') || {});
+        
         let isTruthParams = false;
         array.forEach((el) => {
             if (el.userName === name && el.userPassword === password) {
